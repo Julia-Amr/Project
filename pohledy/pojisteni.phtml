@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<base href="/localhost" />
+    <meta charset="UTF-8">
+    <title>Aplikace pojištění</title>
+	<meta name="description" content="Aplikace pojištění"/>
+	<meta name="keywords" content="aplikace, pojištění, pojištěnci" />
+    <link rel="stylesheet" href="<?= BASE_URL ?>css/style.css">
+</head>
+
+<body>
+<header>
+    <div class="navbar-container">
+        <p class="logo">Aplikace pojištění</p>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#">Pojištěnci</a></li>
+                <li><a href="#">O aplikaci</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!-- Hlavní obsah -->
+<main>
+    <!-- Seznam pojištěnců -->
+       <?php if (count($pojistenci) > 0): ?>
+        <h1>Seznam pojištěnců</h1>
+        <table class="table">
+            <tr>
+                <th>Jméno a příjmení</th>
+                <th>Telefon</th>
+                <th>Věk</th>
+            </tr>
+            <?php foreach ($pojistenci as $pojistenec): ?>
+            <tr>
+                <td><?= isset($pojistenec['cele_jmeno']) ? htmlspecialchars($pojistenec['cele_jmeno']) : '' ?></td>
+                <td><?= isset($pojistenec['telefon']) ? htmlspecialchars($pojistenec['telefon']) : '' ?></td>
+                <td><?= isset($pojistenec['vek']) ? htmlspecialchars($pojistenec['vek']) : '' ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php endif; ?>
+    <!-- Chyby formuláře -->
+    <?php if (count($chyby) > 0): ?>
+    <ul>
+        <?php foreach ($chyby as $chyba): ?>
+            <li><?= htmlspecialchars($chyba) ?></li>
+        <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+   <!-- Formulář -->
+	<h1>Nový pojištěnec</h1>
+    <p>Zadejte prosím svoje údaje</p>
+    <form method="post" class="form">
+    <label>
+        Jméno<br>
+        <input type="text" name="jmeno" value="<?= htmlspecialchars($jmeno) ?>" required>
+    </label><br>
+    <label>
+        Příjmení<br>
+        <input type="text" name="prijmeni" value="<?= htmlspecialchars($prijmeni) ?>" required>
+    </label><br>
+    <label>
+        Telefon<br>
+        <input type="text" name="telefon" pattern="[0-9+]{6,15}" title="Pouze čísla a případně + na začátku" value="<?= htmlspecialchars($telefon) ?>" required>
+    </label><br>
+    <label>
+        Věk<br>
+        <input type="number" name="vek" min="1" max="100" 
+               value="<?= $vek !== '' ? htmlspecialchars($vek) : '' ?>">
+    </label><br>
+    <button type="submit">Uložit</button>
+    </form>
+</main>
+</body>
+</html>
+
