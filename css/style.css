@@ -127,12 +127,12 @@ table th {
 
 /* Sudé řádky tabulky */
 table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: white;
 }
 
 /* Liché řádky tabulky */
 table tr:nth-child(odd) {
-    background-color: white;
+    background-color: #f2f2f2;
 }
 
 /* Nadpis */
