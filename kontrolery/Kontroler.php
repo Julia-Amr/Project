@@ -1,6 +1,4 @@
 <?php
-// Spuštení/obnovení session
-session_start();
 // Načtení modelu
 require 'modely/PojistenecModel.php';
 // Vytvoření instance modelu
